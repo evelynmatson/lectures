@@ -1,2 +1,3 @@
-# lectures
-CS 212 Software Development • Spring 2019
+# CS 212 Lectures
+
+Lecture materials, including code examples and slides.
