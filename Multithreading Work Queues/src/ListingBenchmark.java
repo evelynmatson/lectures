@@ -50,6 +50,12 @@ public class ListingBenchmark {
 			}
 		}.benchmark(test, expected);
 
+		new Benchmarker("Executor") {
+			@Override
+			public Set<Path> run(Path path) {
+				return ExecutorDirectoryListing.list(test);
+			}
+		}.benchmark(test, expected);
 	}
 
 	private static abstract class Benchmarker {
