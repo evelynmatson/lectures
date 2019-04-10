@@ -13,16 +13,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Demonstrates using a URLConnection to fetch the headers and content from
- * a URL on the web.
+ * Demonstrates using a {@link URLConnection} to fetch the headers and content
+ * from a URL on the web.
  */
 public class URLFetcher {
 
 	// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
-	// custom headers
-
-	/** Key used for the custom header including the content of the fetched page. */
-	public static final String CONTENT = "Content";
 
 	/**
 	 * Fetches the headers and content for the specified URL. The content is placed
@@ -47,7 +43,7 @@ public class URLFetcher {
 		urlConnection.setRequestProperty("Connection", "close");
 
 		// get all of the headers
-		// note the status code might be placed with a "null" key
+		// note the status code will be placed with a "null" key
 		results.putAll(urlConnection.getHeaderFields());
 
 		try (
@@ -56,10 +52,10 @@ public class URLFetcher {
 				Stream<String> stream = reader.lines();
 		) {
 			List<String> lines = stream.collect(Collectors.toList());
-			results.put(CONTENT, lines);
+			results.put("Content", lines);
 		}
 		catch (IOException e) {
-			results.put(CONTENT, Collections.emptyList());
+			results.put("Content", Collections.emptyList());
 		}
 
 		return results;
